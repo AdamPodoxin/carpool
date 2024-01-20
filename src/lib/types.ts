@@ -10,11 +10,9 @@ export type Ride = {
 }
 
 export type Vehicle = {
-    //temp
-    licensePlate: string,
-    capacity: number,
-    color: string,
-    make: string,
-    model: string,
-    ownerSub: string
-}
+	ownerSub: string;
+	licensePlate: string;
+	color: string;
+	make: string;
+	model: string;
+};
