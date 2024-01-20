@@ -1,5 +1,18 @@
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "./components/LoginButton";
+import LogoutButton from "./components/LogoutButton";
+
 const App = () => {
-	return <h1>Hello world</h1>;
+	const { user } = useAuth0();
+
+	return (
+		<>
+			{!user && <LoginButton />}
+			{user && <LogoutButton />}
+
+			{user && <p>Welcome {user.name}</p>}
+		</>
+	);
 };
 
 export default App;
