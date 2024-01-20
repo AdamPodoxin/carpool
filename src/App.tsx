@@ -1,18 +1,11 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import LoginButton from "./components/LoginButton";
-import LogoutButton from "./components/LogoutButton";
+import HomePage from "./pages/Home";
+import SignInPage from "./pages/SignIn";
 
 const App = () => {
-	const { user } = useAuth0();
+	const { isAuthenticated } = useAuth0();
 
-	return (
-		<>
-			{!user && <LoginButton />}
-			{user && <LogoutButton />}
-
-			{user && <p>Welcome {user.name}</p>}
-		</>
-	);
+	return isAuthenticated ? <HomePage /> : <SignInPage />;
 };
 
 export default App;
