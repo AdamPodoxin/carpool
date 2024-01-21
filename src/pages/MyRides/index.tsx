@@ -105,7 +105,7 @@ export const GetRides = () => {
 				</div>
 				<div className="column">
 					<h1>I'm riding</h1>
-					{!!driverRides.length && (
+					{!!riderRides.length && (
 						<div className="riderRidesList">
 							{riderRides.map((ride) => (
 								<RideInfo key={ride.id} ride={ride} user={user!} />
