@@ -1,6 +1,6 @@
 import { Ride } from "../../lib/types";
 
-type RideInfoProps= {
+type RideInfoProps = {
     ride: Ride;
 }
 

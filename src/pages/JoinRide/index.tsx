@@ -5,11 +5,12 @@ import { doc, getDoc } from "@firebase/firestore";
 import { Ride, Vehicle } from "../../lib/types";
 import RideInfo from "./RideInfo";
 import { useEffect, useState } from "react";
+import VehicleInfo from "./VehicleInfo";
 
 const JoinRidePage = () => {
     const { rideId } = useParams();
-    var vehicle: Vehicle;
     const [ ride, setRide ] = useState<Ride | null>(null);
+    const [ vehicle, setVehicle ] = useState<Vehicle | null>(null);
 
     const getRideInfo = async () => {
         const rideDoc = await getDoc(doc(db, "rides", rideId!))
@@ -18,26 +19,27 @@ const JoinRidePage = () => {
     };
 
     const getVehicleInfo = async () => {
-        // const vehicleDoc = await getDoc(doc(db, "vehicle", ride.vehicleId));
-        // vehicle = vehicleDoc.data() as Vehicle;
+        const vehicleDoc = await getDoc(doc(db, "vehicles", ride!.vehicleId));
+        console.log(vehicleDoc.data());
+        setVehicle(vehicleDoc.data() as Vehicle);
     }
 
-    const vehicleInfo = getVehicleInfo();
+    const getInfos = async () => {
+        await getRideInfo().then(() => {getVehicleInfo();})
+    }
 
     useEffect(() => {
+        // getRideInfo().then(() => {getVehicleInfo()});
         getRideInfo();
+        console.log("Ride: " + ride);
+        getVehicleInfo();
+        // getInfos();
     }, [])
 
     return (
         <>
             <h1>Join this ride!</h1>
-            <h2>Vehicle info</h2>
-            <p>
-                License Plate:
-                Colour:
-                Make:
-                Model:
-            </p>
+            {vehicle && <VehicleInfo vehicle={vehicle}/>}
             {ride && <RideInfo ride={ride}/>}
             
             <JoinButton />
