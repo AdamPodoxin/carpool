@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { getVehicleForOwner } from "../../lib/vehiclesService";
 import CreateRide from "./CreateRide";
 import CreateVehicle from "./CreateVehicle";
+import { Vehicle } from "../../lib/types";
 
 const CreatePage = () => {
 	const [isLoading, setIsLoading] = useState(true);
-	const [hasVehicle, setHasVehicle] = useState(false);
+	const [vehicle, setVehicle] = useState<Vehicle | null>(null);
 	const [vehicleId, setVehicleId] = useState("");
 
 	const { user } = useAuth0();
@@ -17,7 +18,7 @@ const CreatePage = () => {
 		const vehicle = await getVehicleForOwner(user.sub!);
 
 		setIsLoading(false);
-		setHasVehicle(!!vehicle);
+		setVehicle(vehicle);
 
 		if (vehicle) setVehicleId(vehicle.id);
 	};
@@ -30,8 +31,8 @@ const CreatePage = () => {
 		<>
 			{isLoading ? (
 				<p>Loading...</p>
-			) : hasVehicle ? (
-				<CreateRide vehicleId={vehicleId} />
+			) : vehicle ? (
+				<CreateRide vehicleId={vehicleId} vehicle={vehicle} />
 			) : (
 				<CreateVehicle />
 			)}
