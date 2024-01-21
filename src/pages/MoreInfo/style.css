@@ -1,0 +1,39 @@
+.infoBox {
+    padding: 8px;
+
+	border: 1px solid white;
+	border-radius: 8px;
+    width: 45%;
+}
+
+.joinRideDetails {
+    display: flex;
+    flex-flow: column;
+}
+
+.buttons {
+    display: flex;
+    margin: 5%;
+    align-self: center;
+}
+
+.rideInfoContainer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.column-2 {
+    float: left;
+    width: 50%;
+}
+
+.infoContainer::after {
+    content: "";
+    clear: both;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}

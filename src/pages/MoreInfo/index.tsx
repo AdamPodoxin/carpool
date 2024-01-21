@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import VehicleInfo from "./VehicleInfo";
 import Button from "../../components/Button";
 
+import "./style.css";
+
 const MoreInfoPage = () => {
 	const { rideId } = useParams();
 	const [ride, setRide] = useState<Ride | null>(null);
@@ -38,10 +40,12 @@ const MoreInfoPage = () => {
 	return (
 		<>
 			<div className="content">
-				{vehicle && <VehicleInfo vehicle={vehicle} />}
-				{ride && <RideInfo ride={ride} />}
+				<div className="rideInfoContainer">
+					<div className="infoBox">{ride && <RideInfo ride={ride} />}</div><br/>
+					<div className="infoBox">{vehicle && <VehicleInfo vehicle={vehicle} />}</div><br/>
+				</div><br/>
 
-				<Button onClick={() => goBack()}> See Your Rides</Button>
+				<div className="buttons"><Button onClick={() => goBack()}> See all your rides</Button></div>
 			</div>
 		</>
 	);
