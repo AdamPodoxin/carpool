@@ -9,6 +9,8 @@ import Button from "../../components/Button";
 import { joinRide, leaveRide } from "../../lib/rideService.ts";
 import { useAuth0 } from "@auth0/auth0-react";
 
+import "./style.css";
+
 const JoinRidePage = () => {
 	const { rideId } = useParams();
 	const [ride, setRide] = useState<Ride | null>(null);
@@ -38,6 +40,10 @@ const JoinRidePage = () => {
 		navigate("/");
 	};
 
+    const cancel = async () => {
+        navigate("/");
+    }
+
 	useEffect(() => {
 		getRideInfo();
 		{
@@ -49,14 +55,20 @@ const JoinRidePage = () => {
 		<>
 			<div className="content">
 				<h1>Join this ride!</h1>
-				{vehicle && <VehicleInfo vehicle={vehicle} />}
-				{ride && <RideInfo ride={ride} />}
-
-				{ride?.riderSubs.includes(user!.sub!) ? (
-					<Button onClick={() => leave()}>- Leave</Button>
-				) : (
-					<Button onClick={() => join()}>+ Join</Button>
-				)}
+                <div className="joinRideDetails">
+                    <div className="joinRideInfoContainer">
+                        <div className="infoBox">{ride && <RideInfo ride={ride} />}</div><br/>
+                        <div className="infoBox">{vehicle && <VehicleInfo vehicle={vehicle} />}</div><br/>
+                    </div><br/>
+                    <div className="buttons">
+                        {ride?.riderSubs.includes(user!.sub!) ? (
+                            <Button onClick={() => leave()}>- Leave</Button>
+                        ) : (
+                            <Button onClick={() => join()}>+ Join</Button>
+                        )}
+                        <Button onClick={() => cancel()}>Cancel</Button>
+                    </div>
+                </div>
 			</div>
 		</>
 	);
