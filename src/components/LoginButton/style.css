@@ -1,0 +1,11 @@
+.loginButtonWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.loginButton {
+	font-size: 28px;
+	padding: 12px 24px;
+	margin: 32px;
+}
