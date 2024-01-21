@@ -48,6 +48,9 @@ const RideInfo = ({ ride }: RideInfoProps) => {
 					{pickupTime}
 					<br />
 				</p>
+				{ride.driverSub === user?.sub && (
+					<RiderNamesList riderNames={ride.riderNames} />
+				)}
 			</div>
 		</>
 	);
