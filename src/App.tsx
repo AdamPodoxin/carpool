@@ -5,6 +5,8 @@ import LogoutButton from "./components/LogoutButton";
 
 import "./App.css";
 
+import carIcon from "./assets/icons/favicon-32x32.png";
+
 const App = () => {
 	const { isAuthenticated } = useAuth0();
 
@@ -12,7 +14,9 @@ const App = () => {
 		<>
 			<div className="topBar">
 				<span>
-					<h1><img src="/images/favicon-32x32.png" alt="car-icon"></img> Carpool</h1>
+					<h1>
+						<img src={carIcon} alt="car-icon"></img> Carpool
+					</h1>
 				</span>
 				{isAuthenticated && (
 					<span>
