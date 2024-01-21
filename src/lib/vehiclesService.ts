@@ -9,7 +9,12 @@ export const getVehicleForOwner = async (ownerSub: string) => {
 	);
 
 	const querySnapshot = await getDocs(q);
-	return querySnapshot.empty ? null : (querySnapshot.docs[0].data() as Vehicle);
+	return querySnapshot.empty
+		? null
+		: {
+				...(querySnapshot.docs[0].data() as Vehicle),
+				id: querySnapshot.docs[0].id,
+		  };
 };
 
 export const createVehicle = async (vehicle: Vehicle) => {
