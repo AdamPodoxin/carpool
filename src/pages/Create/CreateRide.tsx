@@ -42,7 +42,7 @@ const CreateRide = ({ vehicle, vehicleId }: CreateRideProps) => {
 					</span>
 
 					<span className="inputPair">
-						<label>Destination</label>
+						<label>Destination:</label>
 						<input
 							name="Destination"
 							value={destination}
@@ -51,7 +51,7 @@ const CreateRide = ({ vehicle, vehicleId }: CreateRideProps) => {
 					</span>
 
 					<span className="inputPair">
-						<label>Start date and time</label>
+						<label>Start date and time:</label>
 						<input
 							name="Start time"
 							type="datetime-local"
@@ -60,10 +60,12 @@ const CreateRide = ({ vehicle, vehicleId }: CreateRideProps) => {
 					</span>
 
 					<span className="inputPair">
-						<label>Capacity</label>
+						<label>Capacity:</label>
 						<input value={vehicle.capacity} disabled />
 					</span>
 
+					<div className="buttons">
+					<Button onClick={async () => {navigate("/")}}>Cancel</Button>
 					<Button
 						onClick={async () => {
 							await createRide(
@@ -82,6 +84,7 @@ const CreateRide = ({ vehicle, vehicleId }: CreateRideProps) => {
 					>
 						Submit
 					</Button>
+					</div>
 				</div>
 			</div>
 		</>

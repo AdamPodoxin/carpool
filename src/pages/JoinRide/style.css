@@ -12,8 +12,7 @@
 }
 
 .buttons {
-    display: grid;
-    gap: 20px;
+    display: flex;
     margin: 5%;
     align-self: center;
 }

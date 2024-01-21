@@ -1,5 +1,8 @@
 .createFormContainer {
 	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .createForm {
@@ -20,6 +23,10 @@
 	input:disabled {
 		background-color: #ccc;
 	}
+}
+
+.buttons {
+	margin: 5%;
 }
 
 .inputPair {

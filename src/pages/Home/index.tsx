@@ -36,6 +36,7 @@ const RideInfo = ({ ride, user }: RideInfoProps) => {
 					<img src="/images/person.png" alt="person-icon"></img>
 				</p>
 
+				<div className="buttons">
 				{ride.riderSubs.includes(user!.sub!) ? (
 					<>
 						<Button onClick={() => leave()}>Leave</Button>
@@ -53,6 +54,7 @@ const RideInfo = ({ ride, user }: RideInfoProps) => {
 				>
 					More info
 				</Button>
+				</div>
 			</div>
 		</>
 	);
@@ -76,18 +78,22 @@ const HomePage = () => {
 
 	return (
 		<>
-			<Button onClick={() => navigate("/create")}>Create a ride</Button>
-			<Button onClick={() => navigate("/my-rides")}>Your rides</Button>
-
-			{!!rides.length && (
-				<div className="ridesList">
-					{rides
-						.filter((ride) => ride.capacity > 0)
-						.map((ride) => (
-							<RideInfo key={ride.id} ride={ride} user={user!} />
-						))}
+			<div className="ridesContainer">
+				<div className="buttons">
+				<Button onClick={() => navigate("/create")}>Create a ride</Button>
+				<Button onClick={() => navigate("/my-rides")}>Your rides</Button>
 				</div>
-			)}
+
+				{!!rides.length && (
+					<div className="ridesList">
+						{rides
+							.filter((ride) => ride.capacity > 0)
+							.map((ride) => (
+								<RideInfo key={ride.id} ride={ride} user={user!} />
+							))}
+					</div>
+				)}
+			</div>
 		</>
 	);
 };
