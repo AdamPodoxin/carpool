@@ -26,6 +26,11 @@ const CreateRide = ({ vehicle, vehicleId }: CreateRideProps) => {
 			<div className="createFormContainer">
 				<h1>Create a ride</h1>
 
+				<p className="vehicleInfo">
+					{vehicle.color} {vehicle.make} {vehicle.model} -{" "}
+					{vehicle.licensePlate}
+				</p>
+
 				<div className="createForm">
 					<span className="inputPair">
 						<label>Origin:</label>
@@ -54,15 +59,22 @@ const CreateRide = ({ vehicle, vehicleId }: CreateRideProps) => {
 						/>
 					</span>
 
+					<span className="inputPair">
+						<label>Capacity</label>
+						<input value={vehicle.capacity} disabled />
+					</span>
+
 					<Button
 						onClick={async () => {
 							await createRide(
 								user!.sub!,
+								user!.name!,
 								origin,
 								destination,
 								startTime,
 								vehicleId,
 								vehicle.capacity,
+								[],
 								[]
 							);
 							navigate("/");
