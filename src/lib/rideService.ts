@@ -145,3 +145,9 @@ export const leaveRide = async (
 
 	await setDoc(doc(db, "rides", ride.id), ride);
 };
+
+export const closeRide = async (ride: Ride) => {
+	ride.closed = true;
+
+	await setDoc(doc(db, "rides", ride.id), ride);
+};

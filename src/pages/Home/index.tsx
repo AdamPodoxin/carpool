@@ -66,7 +66,9 @@ const HomePage = () => {
 	const navigate = useNavigate();
 
 	const fetchRides = async () => {
-		const rides = await getAllRides();
+		const rides = (await getAllRides()).filter(
+			(ride) => ride.driverSub !== user?.sub
+		);
 		setRides(rides);
 	};
 
