@@ -9,7 +9,7 @@ type ButtonProps = {
 
 const Button = ({ children, onClick, className }: ButtonProps) => {
 	return (
-		<button className={`button ${className}`} onClick={() => onClick()}>
+		<button className={`button ${className ?? ""}`} onClick={() => onClick()}>
 			{children}
 		</button>
 	);
