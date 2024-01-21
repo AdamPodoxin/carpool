@@ -1,0 +1,15 @@
+.ridesList {
+	margin: 16px 0;
+
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 300px;
+}
+
+.rideInfo {
+	padding: 8px;
+
+	border: 1px solid white;
+	border-radius: 8px;
+}
