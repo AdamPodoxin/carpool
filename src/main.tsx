@@ -4,12 +4,22 @@ import App from "./App.tsx";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { AUTH_CLIENT_ID, AUTH_DOMAIN } from "./lib/constants.ts";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import CreatePage from "./pages/Create/index.tsx";
+import JoinRidePage from "./pages/JoinRide/index.tsx";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <App />,
 	},
+	{
+		path: "/create",
+		element: <CreatePage />,
+	},
+	{
+		path: "/joinRide/:rideId",
+		element: <JoinRidePage />
+	}
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
