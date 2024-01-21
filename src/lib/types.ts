@@ -6,5 +6,6 @@ export type Ride = {
     startTime: Date,
     vehicleId: string,
     capacity: number,
-    riderSubs: string[]
+    riderSubs: string[],
+    closed: boolean
 }
