@@ -33,7 +33,7 @@ const RideInfo = ({ ride, user }: RideInfoProps) => {
 				<p>At: {ride.startTime.toLocaleString()}</p>
 				<p>
 					Seats left: {ride.capacity}
-					<img src="/images/person.png" alt="person-icon"></img>
+					<img src="/public/images/person.png" alt="person-icon"></img>
 				</p>
 
 				{ride.riderSubs.includes(user!.sub!) ? (
