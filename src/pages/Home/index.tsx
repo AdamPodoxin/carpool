@@ -3,7 +3,7 @@ import Button from "../../components/Button";
 import { useEffect, useState } from "react";
 import { Ride } from "../../lib/types";
 import { User, useAuth0 } from "@auth0/auth0-react";
-import { getAllRides, joinRide } from "../../lib/rideService";
+import { getAllRides, joinRide, leaveRide } from "../../lib/rideService.ts";
 
 import "./style.css";
 
@@ -20,6 +20,11 @@ const RideInfo = ({ ride, user }: RideInfoProps) => {
 		navigate(0);
 	};
 
+	const leave = async () => {
+		await leaveRide(ride, user!.sub!, user!.name!);
+		navigate(0);
+	};
+
 	return (
 		<>
 			<div className="rideInfo">
@@ -31,18 +36,23 @@ const RideInfo = ({ ride, user }: RideInfoProps) => {
 					<img src="/images/person.png" alt="person-icon"></img>
 				</p>
 
-				{!ride.riderSubs.includes(user!.sub!) && (
+				{ride.riderSubs.includes(user!.sub!) ? (
+					<>
+						<Button onClick={() => leave()}>Leave</Button>
+					</>
+				) : (
 					<>
 						<Button onClick={() => join()}>Join</Button>
-						<Button
-							onClick={() => {
-								navigate(`/joinRide/${ride.id}`);
-							}}
-						>
-							More info
-						</Button>
 					</>
 				)}
+
+				<Button
+					onClick={() => {
+						navigate(`/joinRide/${ride.id}`);
+					}}
+				>
+					More info
+				</Button>
 			</div>
 		</>
 	);

@@ -17,11 +17,18 @@ const RideInfo = ({ride}: RideInfoProps) => {
     return (
         <>
             <h2>Ride info</h2>
-            <p>
-                Origin: {ride.origin}<br/>
-                Destination: {ride.destination}<br/>
-                Pickup Time: {pickupTime}<br/>
-            </p>
+            <div className="infoContainer">
+                <p className="column-2">
+                    <b>Origin:</b><br/>
+                    <b>Destination:</b><br/>
+                    <b>Pickup Time:</b><br/>
+                </p>
+                <p className="column-2">
+                    {ride.origin}<br/>
+                    {ride.destination}<br/>
+                    {pickupTime}<br/>
+                </p>
+            </div>
         </>
     )
 }
