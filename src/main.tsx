@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { GetRides } from "./pages/MyRides/index.tsx";
 import CreatePage from "./pages/Create/index.tsx";
 import JoinRidePage from "./pages/JoinRide/index.tsx";
+import MoreInfoPage from "./pages/MoreInfo/index.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "/more-info/:rideId",
-		element: <GetRides />,
+		element: <MoreInfoPage />,
 	},
 ]);
 
