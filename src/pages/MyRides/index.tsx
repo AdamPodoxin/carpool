@@ -48,6 +48,8 @@ export const GetRides = () => {
 	const [riderRides, setRiderRides] = useState<Ride[]>([]);
 	const { user, isAuthenticated } = useAuth0();
 
+    const navigate = useNavigate();
+
 	const getDriverRides = async () => {
 		const driverRides = await getRidesAsDriver(user!.sub!);
 		setDriverRides(driverRides);
@@ -67,7 +69,9 @@ export const GetRides = () => {
 
 	return (
 		<>
-			<div className="flex">
+            <Button className={"allRides"} onClick={() => navigate("/")}><h1>&larr; All Rides</h1></Button>
+
+            <div className="flex">
 				<div className="column">
 					<h1>I'm driving</h1>
 					{!!driverRides.length && (
