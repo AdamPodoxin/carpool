@@ -1,0 +1,26 @@
+body {
+	margin: 0;
+
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+	background-color: #242424;
+}
+
+.topBar {
+	background-color: #121212;
+	color: white;
+
+	padding: 8px 16px;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	h1 {
+		font-size: 28px;
+	}
+}
+
+.content {
+	padding: 16px;
+}

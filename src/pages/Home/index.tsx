@@ -1,14 +1,12 @@
-import { Link } from "react-router-dom";
-import LogoutButton from "../../components/LogoutButton";
+import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button";
 
 const HomePage = () => {
+	const navigate = useNavigate();
+
 	return (
 		<>
-			<LogoutButton />
-
-			<br />
-
-			<Link to={"/create"}>Create a Ride</Link>
+			<Button onClick={() => navigate("/create")}>Create a ride</Button>
 		</>
 	);
 };
