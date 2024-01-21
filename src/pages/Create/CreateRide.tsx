@@ -74,6 +74,7 @@ const CreateRide = ({ vehicle, vehicleId }: CreateRideProps) => {
 								startTime,
 								vehicleId,
 								vehicle.capacity,
+								[],
 								[]
 							);
 							navigate("/");

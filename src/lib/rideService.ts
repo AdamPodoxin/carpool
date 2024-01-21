@@ -10,7 +10,8 @@ export async function createRide(
 	startTime: Date,
 	vehicleId: string,
 	capacity: number,
-	riderNames: string[]
+	riderNames: string[],
+	riderSubs: string[]
 ): Promise<Ride> {
 	const id = await putRide(
 		driverSub,
@@ -19,19 +20,21 @@ export async function createRide(
 		startTime,
 		vehicleId,
 		capacity,
-		riderNames
+		riderNames,
+		riderSubs
 	);
 
 	let ride: Ride = {
-		id: id,
-		driverSub: driverSub,
-		driverName: driverName,
-		origin: origin,
-		destination: destination,
-		startTime: startTime,
-		vehicleId: vehicleId,
-		capacity: capacity,
-		riderNames: riderNames,
+		id,
+		driverSub,
+		driverName,
+		origin,
+		destination,
+		startTime,
+		vehicleId,
+		capacity,
+		riderNames,
+		riderSubs,
 		closed: false,
 	};
 	return ride;
@@ -44,7 +47,8 @@ async function putRide(
 	startTime: Date,
 	vehicleId: string,
 	capacity: number,
-	riderNames: string[]
+	riderNames: string[],
+	riderSubs: string[]
 ): Promise<string> {
 	// Add a new document in collection "rides"
 	const rideRef = await addDoc(collection(db, "rides"), {
@@ -55,6 +59,7 @@ async function putRide(
 		vehicleId: vehicleId,
 		capacity: capacity,
 		riderNames: riderNames,
+		riderSubs,
 	});
 
 	return rideRef.id;
@@ -62,16 +67,21 @@ async function putRide(
 
 export const getAllRides = async () => {
 	const querySnapshot = await getDocs(collection(db, "rides"));
-	const rides = querySnapshot.docs.map((doc) => {
-		const data = doc.data();
-		const ride = data as Ride;
+	const rides = querySnapshot.docs
+		.filter((doc) => {
+			const data = doc.data() as Ride;
+			return data.capacity > 0 && !data.closed;
+		})
+		.map((doc) => {
+			const data = doc.data();
+			const ride = data as Ride;
 
-		ride.id = doc.id;
-		ride.startTime = (data.startTime as Timestamp).toDate();
+			ride.id = doc.id;
+			ride.startTime = (data.startTime as Timestamp).toDate();
 
-		ride.startTime;
+			ride.startTime;
 
-		return ride;
-	});
+			return ride;
+		});
 	return rides;
 };

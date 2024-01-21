@@ -17,5 +17,6 @@ export type Ride = {
 	vehicleId: string;
 	capacity: number;
 	riderNames: string[];
+	riderSubs: string[];
 	closed: boolean;
 };
