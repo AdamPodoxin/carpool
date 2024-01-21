@@ -4,4 +4,5 @@ export type Vehicle = {
 	color: string;
 	make: string;
 	model: string;
+	capacity: number;
 };
