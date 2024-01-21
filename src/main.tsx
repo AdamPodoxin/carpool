@@ -4,8 +4,10 @@ import App from "./App.tsx";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { AUTH_CLIENT_ID, AUTH_DOMAIN } from "./lib/constants.ts";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { GetRides } from "./pages/MyRides/index.tsx";
 import CreatePage from "./pages/Create/index.tsx";
 import JoinRidePage from "./pages/JoinRide/index.tsx";
+import MoreInfoPage from "./pages/MoreInfo/index.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -19,6 +21,14 @@ const router = createBrowserRouter([
 	{
 		path: "/joinRide/:rideId",
 		element: <JoinRidePage />,
+	},
+	{
+		path: "/my-rides",
+		element: <GetRides />,
+	},
+	{
+		path: "/more-info/:rideId",
+		element: <MoreInfoPage />,
 	},
 ]);
 
