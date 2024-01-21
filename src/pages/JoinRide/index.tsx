@@ -62,12 +62,12 @@ const JoinRidePage = () => {
                         <div className="infoBox">{vehicle && <VehicleInfo vehicle={vehicle} />}</div><br/>
                     </div><br/>
                     <div className="buttons">
+                        <Button onClick={() => cancel()}>Cancel</Button>
                         {ride?.riderSubs.includes(user!.sub!) ? (
                             <Button onClick={() => leave()}>- Leave</Button>
                         ) : (
                             <Button onClick={() => join()}>+ Join</Button>
                         )}
-                        <Button onClick={() => cancel()}>Cancel</Button>
                     </div>
                 </div>
 			</div>

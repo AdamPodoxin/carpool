@@ -12,7 +12,7 @@ const App = () => {
 		<>
 			<div className="topBar">
 				<span>
-					<h1>Carpool</h1>
+					<h1><img src="/images/favicon-32x32.png" alt="car-icon"></img> Carpool</h1>
 				</span>
 				{isAuthenticated && (
 					<span>
