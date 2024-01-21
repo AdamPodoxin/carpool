@@ -14,7 +14,7 @@ const JoinRidePage = () => {
 	const [ride, setRide] = useState<Ride | null>(null);
 	const [vehicle, setVehicle] = useState<Vehicle | null>(null);
 
-	const { user } = useAuth0();
+	const { user, isAuthenticated } = useAuth0();
 
 	const navigate = useNavigate();
 
@@ -39,11 +39,12 @@ const JoinRidePage = () => {
 	};
 
 	useEffect(() => {
-		getRideInfo();
-		{
-			ride && getVehicleInfo();
-		}
-	}, [ride]);
+		if (isAuthenticated) getRideInfo();
+	}, [isAuthenticated]);
+
+	useEffect(() => {
+		if (isAuthenticated && ride) getVehicleInfo();
+	}, [isAuthenticated, ride]);
 
 	return (
 		<>
