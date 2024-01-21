@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { createRide } from "../../lib/RideService";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Vehicle } from "../../lib/types";
 import { useNavigate } from "react-router-dom";
+import { createRide } from "../../lib/rideService";
 
 type CreateRideProps = {
 	vehicle: Vehicle;
