@@ -25,6 +25,10 @@ const router = createBrowserRouter([
 		path: "/my-rides",
 		element: <GetRides />,
 	},
+	{
+		path: "/more-info/:rideId",
+		element: <GetRides />,
+	},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
