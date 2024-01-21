@@ -4,6 +4,9 @@ import { Vehicle } from "../../lib/types";
 import { useNavigate } from "react-router-dom";
 import { createRide } from "../../lib/rideService";
 
+import "./CreateRide.css";
+import Button from "../../components/Button";
+
 type CreateRideProps = {
 	vehicle: Vehicle;
 	vehicleId: string;
@@ -20,48 +23,54 @@ const CreateRide = ({ vehicle, vehicleId }: CreateRideProps) => {
 
 	return (
 		<>
-			<p>Create Ride form</p>
+			<div className="createRide">
+				<h1>Create a ride</h1>
 
-			<div
-				style={{
-					display: "flex",
-					flexDirection: "column",
-				}}
-			>
-				<input
-					placeholder="Origin"
-					value={origin}
-					onChange={(e) => setOrigin(e.target.value)}
-				/>
+				<div className="createRideForm">
+					<span className="inputPair">
+						<label>Origin:</label>
+						<input
+							placeholder="Origin"
+							value={origin}
+							onChange={(e) => setOrigin(e.target.value)}
+						/>
+					</span>
 
-				<input
-					placeholder="Destination"
-					value={destination}
-					onChange={(e) => setDestination(e.target.value)}
-				/>
+					<span className="inputPair">
+						<label>Destination</label>
+						<input
+							placeholder="Destination"
+							value={destination}
+							onChange={(e) => setDestination(e.target.value)}
+						/>
+					</span>
 
-				<input
-					placeholder="Start time"
-					type="datetime-local"
-					onChange={(e) => setStartTime(new Date(e.target.value))}
-				/>
+					<span className="inputPair">
+						<label>Start date and time</label>
+						<input
+							placeholder="Start time"
+							type="datetime-local"
+							onChange={(e) => setStartTime(new Date(e.target.value))}
+						/>
+					</span>
 
-				<button
-					onClick={async () => {
-						await createRide(
-							user!.sub!,
-							origin,
-							destination,
-							startTime,
-							vehicleId,
-							vehicle.capacity,
-							[]
-						);
-						navigate("/");
-					}}
-				>
-					Submit
-				</button>
+					<Button
+						onClick={async () => {
+							await createRide(
+								user!.sub!,
+								origin,
+								destination,
+								startTime,
+								vehicleId,
+								vehicle.capacity,
+								[]
+							);
+							navigate("/");
+						}}
+					>
+						Submit
+					</Button>
+				</div>
 			</div>
 		</>
 	);
