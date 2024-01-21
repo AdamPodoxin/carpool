@@ -5,6 +5,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { AUTH_CLIENT_ID, AUTH_DOMAIN } from "./lib/constants.ts";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import AddressFill from "./pages/Address/index.tsx";
+import { GetRides } from "./pages/MyRides/index.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
 	{
 		path: "/fill",
 		element: <AddressFill />,
+	},
+	{
+		path: "/my-rides",
+		element: <GetRides />,
 	},
 ]);
 
