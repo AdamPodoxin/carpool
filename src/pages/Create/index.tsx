@@ -7,6 +7,7 @@ import CreateVehicle from "./CreateVehicle";
 const CreatePage = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [hasVehicle, setHasVehicle] = useState(false);
+	const [vehicleId, setVehicleId] = useState("");
 
 	const { user } = useAuth0();
 
@@ -14,8 +15,11 @@ const CreatePage = () => {
 		if (!user) return;
 
 		const vehicle = await getVehicleForOwner(user.sub!);
+
 		setIsLoading(false);
 		setHasVehicle(!!vehicle);
+
+		if (vehicle) setVehicleId(vehicle.id);
 	};
 
 	useEffect(() => {
@@ -27,7 +31,7 @@ const CreatePage = () => {
 			{isLoading ? (
 				<p>Loading...</p>
 			) : hasVehicle ? (
-				<CreateRide />
+				<CreateRide vehicleId={vehicleId} />
 			) : (
 				<CreateVehicle />
 			)}
