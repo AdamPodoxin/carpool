@@ -15,6 +15,11 @@ type RideInfoProps = {
 const RideInfo = ({ ride, user }: RideInfoProps) => {
 	const navigate = useNavigate();
 
+	const join = async () => {
+		await joinRide(ride, user!.sub!, user!.name!);
+		navigate(0);
+	};
+
 	return (
 		<>
 			<div className="rideInfo">
@@ -25,14 +30,7 @@ const RideInfo = ({ ride, user }: RideInfoProps) => {
 
 				{!ride.riderSubs.includes(user!.sub!) && (
 					<>
-						<Button
-							onClick={() => {
-								joinRide(ride, user!.sub!, user!.name!);
-								navigate(0);
-							}}
-						>
-							Join
-						</Button>
+						<Button onClick={() => join()}>Join</Button>
 						<Button
 							onClick={() => {
 								navigate(`/joinRide/${ride.id}`);
