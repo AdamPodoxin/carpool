@@ -24,14 +24,23 @@ const RideInfo = ({ ride, user }: RideInfoProps) => {
 				<p>Seats left: {ride.capacity}</p>
 
 				{!ride.riderSubs.includes(user!.sub!) && (
-					<Button
-						onClick={() => {
-							joinRide(ride, user!.sub!, user!.name!);
-							navigate(0);
-						}}
-					>
-						Join
-					</Button>
+					<>
+						<Button
+							onClick={() => {
+								joinRide(ride, user!.sub!, user!.name!);
+								navigate(0);
+							}}
+						>
+							Join
+						</Button>
+						<Button
+							onClick={() => {
+								navigate(`/joinRide/${ride.id}`);
+							}}
+						>
+							More info
+						</Button>
+					</>
 				)}
 			</div>
 		</>
