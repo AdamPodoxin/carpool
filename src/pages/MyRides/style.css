@@ -1,0 +1,29 @@
+.driverRidesList {
+    margin: 16px 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 300px;
+    text-align: left;
+}
+
+.riderRidesList {
+    margin: 16px 0;
+
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    width: 300px;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+.column {
+    padding-right: 100px;
+}

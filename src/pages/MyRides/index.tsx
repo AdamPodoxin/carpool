@@ -2,6 +2,7 @@ import { User, useAuth0 } from "@auth0/auth0-react";
 import { Ride } from "../../lib/types";
 import { getRidesAsDriver, getRidesAsRider } from "../../lib/rideService";
 import { useEffect, useState } from "react";
+import "./style.css";
 
 type RideInfoProps = {
 	ride: Ride;
@@ -50,6 +51,8 @@ export const GetRides = () => {
 
     return (
 		<>
+            <div className="flex">
+            <div className="column">
             <h1>I'm driving</h1>
 			{!!driverRides.length && (
 				<div className="driverRidesList">
@@ -59,6 +62,8 @@ export const GetRides = () => {
 						))}
 				</div>
 			)}
+            </div>
+            <div className="column">
             <h1>I'm riding</h1>
 			{!!driverRides.length && (
 				<div className="riderRidesList">
@@ -68,6 +73,8 @@ export const GetRides = () => {
 						))}
 				</div>
 			)}
+            </div>
+            </div>
 		</>
 	);
 }
