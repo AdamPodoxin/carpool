@@ -77,6 +77,7 @@ const HomePage = () => {
 	return (
 		<>
 			<Button onClick={() => navigate("/create")}>Create a ride</Button>
+			<Button onClick={() => navigate("/my-rides")}>Your rides</Button>
 
 			{!!rides.length && (
 				<div className="ridesList">
