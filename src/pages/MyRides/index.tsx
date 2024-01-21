@@ -1,6 +1,10 @@
 import { User, useAuth0 } from "@auth0/auth0-react";
 import { Ride } from "../../lib/types";
-import { getRidesAsDriver, getRidesAsRider } from "../../lib/rideService";
+import {
+	closeRide,
+	getRidesAsDriver,
+	getRidesAsRider,
+} from "../../lib/rideService";
 import { useEffect, useState } from "react";
 import "./style.css";
 import Button from "../../components/Button";
@@ -13,6 +17,8 @@ type RideInfoProps = {
 
 const RideInfo = ({ ride }: RideInfoProps) => {
 	const navigate = useNavigate();
+
+	const { user } = useAuth0();
 
 	const pickupTimestamp = ride.startTime as any;
 	const timestamp = {
@@ -38,6 +44,20 @@ const RideInfo = ({ ride }: RideInfoProps) => {
 				>
 					More info
 				</Button>
+
+				{ride.driverSub === user?.sub &&
+					(ride.closed ? (
+						<span>Closed</span>
+					) : (
+						<Button
+							onClick={() => {
+								closeRide(ride);
+								navigate(0);
+							}}
+						>
+							Close
+						</Button>
+					))}
 			</div>
 		</>
 	);

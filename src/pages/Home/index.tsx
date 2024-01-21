@@ -7,6 +7,8 @@ import { getAllRides, joinRide, leaveRide } from "../../lib/rideService.ts";
 
 import "./style.css";
 
+import personIcon from "../../assets/icons/person.png";
+
 type RideInfoProps = {
 	ride: Ride;
 	user: User;
@@ -33,7 +35,7 @@ const RideInfo = ({ ride, user }: RideInfoProps) => {
 				<p>At: {ride.startTime.toLocaleString()}</p>
 				<p>
 					Seats left: {ride.capacity}
-					<img src="/images/person.png" alt="person-icon"></img>
+					<img src={personIcon} alt="person-icon" />
 				</p>
 
 				{ride.riderSubs.includes(user!.sub!) ? (
@@ -66,7 +68,9 @@ const HomePage = () => {
 	const navigate = useNavigate();
 
 	const fetchRides = async () => {
-		const rides = await getAllRides();
+		const rides = (await getAllRides()).filter(
+			(ride) => ride.driverSub !== user?.sub
+		);
 		setRides(rides);
 	};
 
