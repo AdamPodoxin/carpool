@@ -1,8 +1,8 @@
-.createRide {
+.createFormContainer {
 	padding: 16px;
 }
 
-.createRideForm {
+.createForm {
 	display: flex;
 	flex-direction: column;
 

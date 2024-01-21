@@ -4,7 +4,7 @@ import { Vehicle } from "../../lib/types";
 import { useNavigate } from "react-router-dom";
 import { createRide } from "../../lib/rideService";
 
-import "./CreateRide.css";
+import "./style.css";
 import Button from "../../components/Button";
 
 type CreateRideProps = {
@@ -23,14 +23,14 @@ const CreateRide = ({ vehicle, vehicleId }: CreateRideProps) => {
 
 	return (
 		<>
-			<div className="createRide">
+			<div className="createFormContainer">
 				<h1>Create a ride</h1>
 
-				<div className="createRideForm">
+				<div className="createForm">
 					<span className="inputPair">
 						<label>Origin:</label>
 						<input
-							placeholder="Origin"
+							name="Origin"
 							value={origin}
 							onChange={(e) => setOrigin(e.target.value)}
 						/>
@@ -39,7 +39,7 @@ const CreateRide = ({ vehicle, vehicleId }: CreateRideProps) => {
 					<span className="inputPair">
 						<label>Destination</label>
 						<input
-							placeholder="Destination"
+							name="Destination"
 							value={destination}
 							onChange={(e) => setDestination(e.target.value)}
 						/>
@@ -48,7 +48,7 @@ const CreateRide = ({ vehicle, vehicleId }: CreateRideProps) => {
 					<span className="inputPair">
 						<label>Start date and time</label>
 						<input
-							placeholder="Start time"
+							name="Start time"
 							type="datetime-local"
 							onChange={(e) => setStartTime(new Date(e.target.value))}
 						/>
