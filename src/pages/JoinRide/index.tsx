@@ -1,4 +1,3 @@
-import JoinButton from "../../components/JoinButton";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../../lib/firebase";
 import { doc, getDoc } from "@firebase/firestore";
