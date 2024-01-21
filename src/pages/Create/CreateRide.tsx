@@ -68,6 +68,7 @@ const CreateRide = ({ vehicle, vehicleId }: CreateRideProps) => {
 						onClick={async () => {
 							await createRide(
 								user!.sub!,
+								user!.name!,
 								origin,
 								destination,
 								startTime,

@@ -4,12 +4,13 @@ import { addDoc, collection } from "firebase/firestore";
 
 export async function createRide(
 	driverSub: string,
+	driverName: string,
 	origin: string,
 	destination: string,
 	startTime: Date,
 	vehicleId: string,
 	capacity: number,
-	riderSubs: string[]
+	riderNames: string[]
 ): Promise<Ride> {
 	const id = await putRide(
 		driverSub,
@@ -18,18 +19,20 @@ export async function createRide(
 		startTime,
 		vehicleId,
 		capacity,
-		riderSubs
+		riderNames
 	);
 
 	let ride: Ride = {
 		id: id,
 		driverSub: driverSub,
+		driverName: driverName,
 		origin: origin,
 		destination: destination,
 		startTime: startTime,
 		vehicleId: vehicleId,
 		capacity: capacity,
-		riderSubs: riderSubs,
+		riderNames: riderNames,
+		closed: false,
 	};
 	return ride;
 }
@@ -41,7 +44,7 @@ async function putRide(
 	startTime: Date,
 	vehicleId: string,
 	capacity: number,
-	riderSubs: string[]
+	riderNames: string[]
 ): Promise<string> {
 	// Add a new document in collection "rides"
 	const rideRef = await addDoc(collection(db, "rides"), {
@@ -51,7 +54,7 @@ async function putRide(
 		startTime: startTime,
 		vehicleId: vehicleId,
 		capacity: capacity,
-		riderSubs: riderSubs,
+		riderNames: riderNames,
 	});
 
 	return rideRef.id;
