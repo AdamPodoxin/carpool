@@ -26,7 +26,10 @@ const RideInfo = ({ ride, user }: RideInfoProps) => {
 				<p>From: {ride.origin}</p>
 				<p>To: {ride.destination}</p>
 				<p>At: {ride.startTime.toLocaleString()}</p>
-				<p>Seats left: {ride.capacity}</p>
+				<p>
+					Seats left: {ride.capacity}
+					<img src="/images/person.png" alt="person-icon"></img>
+				</p>
 
 				{!ride.riderSubs.includes(user!.sub!) && (
 					<>
