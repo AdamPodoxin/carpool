@@ -1,6 +1,13 @@
 import { db } from "./firebase";
 import { Ride } from "./types";
-import { Timestamp, addDoc, collection, getDocs } from "firebase/firestore";
+import {
+	Timestamp,
+	addDoc,
+	collection,
+	doc,
+	getDocs,
+	setDoc,
+} from "firebase/firestore";
 
 export async function createRide(
 	driverSub: string,
@@ -84,4 +91,16 @@ export const getAllRides = async () => {
 			return ride;
 		});
 	return rides;
+};
+
+export const joinRide = async (
+	ride: Ride,
+	riderSub: string,
+	riderName: string
+) => {
+	ride.riderSubs.push(riderSub);
+	ride.riderNames.push(riderName);
+	ride.capacity--;
+
+	await setDoc(doc(db, "rides", ride.id), ride);
 };

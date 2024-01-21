@@ -2,12 +2,19 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { useEffect, useState } from "react";
 import { Ride } from "../../lib/types";
-import { useAuth0 } from "@auth0/auth0-react";
-import { getAllRides } from "../../lib/rideService";
+import { User, useAuth0 } from "@auth0/auth0-react";
+import { getAllRides, joinRide } from "../../lib/rideService";
 
 import "./style.css";
 
-const RideInfo = ({ ride }: { ride: Ride }) => {
+type RideInfoProps = {
+	ride: Ride;
+	user: User;
+};
+
+const RideInfo = ({ ride, user }: RideInfoProps) => {
+	const navigate = useNavigate();
+
 	return (
 		<>
 			<div className="rideInfo">
@@ -16,7 +23,16 @@ const RideInfo = ({ ride }: { ride: Ride }) => {
 				<p>At: {ride.startTime.toLocaleString()}</p>
 				<p>Seats left: {ride.capacity}</p>
 
-				<Button onClick={() => {}}>Join</Button>
+				{!ride.riderSubs.includes(user!.sub!) && (
+					<Button
+						onClick={() => {
+							joinRide(ride, user!.sub!, user!.name!);
+							navigate(0);
+						}}
+					>
+						Join
+					</Button>
+				)}
 			</div>
 		</>
 	);
@@ -47,7 +63,7 @@ const HomePage = () => {
 					{rides
 						.filter((ride) => ride.capacity > 0)
 						.map((ride) => (
-							<RideInfo key={ride.id} ride={ride} />
+							<RideInfo key={ride.id} ride={ride} user={user!} />
 						))}
 				</div>
 			)}
