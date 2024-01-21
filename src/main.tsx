@@ -6,7 +6,6 @@ import { AUTH_CLIENT_ID, AUTH_DOMAIN } from "./lib/constants.ts";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import CreatePage from "./pages/Create/index.tsx";
 import JoinRidePage from "./pages/JoinRide/index.tsx";
-import CreatePage from "./pages/Create/index.tsx";
 
 const router = createBrowserRouter([
 	{
