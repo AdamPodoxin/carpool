@@ -8,3 +8,13 @@ export type Ride = {
     capacity: number,
     riderSubs: string[]
 }
+
+export type Vehicle = {
+    //temp
+    licensePlate: string,
+    capacity: number,
+    color: string,
+    make: string,
+    model: string,
+    ownerSub: string
+}
