@@ -104,3 +104,15 @@ export const joinRide = async (
 
 	await setDoc(doc(db, "rides", ride.id), ride);
 };
+
+export const leaveRide = async (
+	ride: Ride,
+	riderSub: string,
+	riderName: string
+) => {
+	ride.riderSubs.splice(ride.riderSubs.indexOf(riderSub));
+	ride.riderNames.splice(ride.riderNames.indexOf(riderName));
+	ride.capacity++;
+
+	await setDoc(doc(db, "rides", ride.id), ride);
+};

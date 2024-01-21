@@ -6,7 +6,7 @@ import RideInfo from "./RideInfo";
 import { useEffect, useState } from "react";
 import VehicleInfo from "./VehicleInfo";
 import Button from "../../components/Button";
-import { joinRide } from "../../lib/rideService";
+import { joinRide, leaveRide } from "../../lib/rideService.ts";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const JoinRidePage = () => {
@@ -33,6 +33,11 @@ const JoinRidePage = () => {
 		navigate("/");
 	};
 
+	const leave = async () => {
+		await leaveRide(ride!, user!.sub!, user!.name!);
+		navigate("/");
+	};
+
 	useEffect(() => {
 		getRideInfo();
 		{
@@ -47,7 +52,11 @@ const JoinRidePage = () => {
 				{vehicle && <VehicleInfo vehicle={vehicle} />}
 				{ride && <RideInfo ride={ride} />}
 
-				<Button onClick={() => join()}>+ Join</Button>
+				{ride?.riderSubs.includes(user!.sub!) ? (
+					<Button onClick={() => leave()}>- Leave</Button>
+				) : (
+					<Button onClick={() => join()}>+ Join</Button>
+				)}
 			</div>
 		</>
 	);
