@@ -1,37 +1,42 @@
 import { db } from "./firebase";
 import { Ride } from "./types";
-import { addDoc, collection, getDocs, query, where, Timestamp, doc, setDoc } from "firebase/firestore"; 
+import {
+	addDoc,
+	collection,
+	getDocs,
+	query,
+	where,
+	Timestamp,
+	doc,
+	setDoc,
+} from "firebase/firestore";
 
-export async function getRidesAsDriver(
-    driverSub: string) : Promise<Ride[]>
-{
-    const q = query(collection(db, "rides"), where("driverSub", "==", driverSub));
+export async function getRidesAsDriver(driverSub: string): Promise<Ride[]> {
+	const q = query(collection(db, "rides"), where("driverSub", "==", driverSub));
 
-    const querySnapshot = await getDocs(q);
-    let rides: Ride[] = [];
-    querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-        let ride: Ride = doc.data() as Ride;
-        rides.push(ride);
-    });
-    return rides;
+	const querySnapshot = await getDocs(q);
+	let rides: Ride[] = [];
+	querySnapshot.forEach((doc) => {
+		let ride: Ride = doc.data() as Ride;
+		rides.push(ride);
+	});
+	return rides;
 }
 
-export async function getRidesAsRider(
-    riderSub: string) : Promise<Ride[]>
-{
-    const q = query(collection(db, "rides"), where("riderSubs", "array-contains", riderSub));
+export async function getRidesAsRider(riderSub: string): Promise<Ride[]> {
+	const q = query(
+		collection(db, "rides"),
+		where("riderSubs", "array-contains", riderSub)
+	);
 
-    const querySnapshot = await getDocs(q);
-    let rides: Ride[] = [];
-    querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-        let ride: Ride = doc.data() as Ride;
-        rides.push(ride);
-    });
-    return rides;
+	const querySnapshot = await getDocs(q);
+	let rides: Ride[] = [];
+	querySnapshot.forEach((doc) => {
+		let ride: Ride = doc.data() as Ride;
+		rides.push(ride);
+	});
+	return rides;
 }
-
 
 export async function createRide(
 	driverSub: string,
