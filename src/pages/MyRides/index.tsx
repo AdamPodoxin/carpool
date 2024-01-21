@@ -50,8 +50,8 @@ const RideInfo = ({ ride }: RideInfoProps) => {
 						<span>Closed</span>
 					) : (
 						<Button
-							onClick={() => {
-								closeRide(ride);
+							onClick={async () => {
+								await closeRide(ride);
 								navigate(0);
 							}}
 						>
