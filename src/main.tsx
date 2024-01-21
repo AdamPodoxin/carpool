@@ -15,12 +15,12 @@ const router = createBrowserRouter([
 		element: <App />,
 	},
 	{
-		path: "/create",
-		element: <CreatePage />,
-	},
-	{
 		path: "/joinRide/:rideId",
 		element: <JoinRidePage />,
+	},
+	{
+		path: "/create",
+		element: <CreatePage />,
 	},
 	{
 		path: "/my-rides",
